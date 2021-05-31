@@ -7,11 +7,11 @@ namespace SysTeMate.BMS.Domain.Entities
 {
     public class EmployeeType
     {
-        public EmployeeTypeEnums EmployeeTypeId { get; set; }
+        public EmployeeTypeEnums Id { get; set; }
 
         public string Name { get; set; }
 
-        public List<Employee> Emplyees { get; set; }
+        //public List<Employee> Emplyees { get; set; }
 
     }
 }

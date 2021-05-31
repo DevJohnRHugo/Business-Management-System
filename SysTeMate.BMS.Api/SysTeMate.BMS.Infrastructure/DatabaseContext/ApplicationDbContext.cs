@@ -1,5 +1,6 @@
 ﻿using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
@@ -15,12 +16,18 @@ using SysTeMate.BMS.Infrastructure.Models;
 
 namespace SysTeMate.BMS.Domain.DatabaseContext
 {
-    public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, IApplicationDbContext
+    public class ApplicationDbContext : /*ApiAuthorizationDbContext<ApplicationUser>*/ IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
-        public ApplicationDbContext(
-           DbContextOptions options,
-           IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
+        //public ApplicationDbContext(
+        //   DbContextOptions options,
+        //   IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
+        //{
+        //}
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
         {
+
         }
 
         public DbSet<Employee> Employees { get; set; }
@@ -37,7 +44,7 @@ namespace SysTeMate.BMS.Domain.DatabaseContext
 
             builder
                 .Entity<EmployeeType>()
-                .Property(e => e.EmployeeTypeId)
+                .Property(e => e.Id)
                 .HasConversion<int>();
 
             builder
@@ -46,7 +53,7 @@ namespace SysTeMate.BMS.Domain.DatabaseContext
                     .Cast<EmployeeTypeEnums>()
                     .Select(e => new EmployeeType()
                     {
-                        EmployeeTypeId = e,
+                        Id = e,
                         Name = e.ToString()
                     })
             );

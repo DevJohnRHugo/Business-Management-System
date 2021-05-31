@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using SysTeMate.BMS.Application.Common.Interfaces;
 using SysTeMate.BMS.Domain.DatabaseContext;
+using SysTeMate.BMS.Infrastructure.DatabaseContext;
 using SysTeMate.BMS.Infrastructure.Models;
 
 namespace SysTeMate.BMS.Domain
@@ -22,11 +24,16 @@ namespace SysTeMate.BMS.Domain
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
-            services.AddDefaultIdentity<ApplicationUser>()
+            //services.AddDefaultIdentity<ApplicationUser>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+            //services.AddIdentityServer()
+            //    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+
+            services.AddTransient<IIdentityService, IdentityService>();
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();

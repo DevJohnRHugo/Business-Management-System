@@ -9,7 +9,6 @@ namespace SysTeMate.BMS.Domain.Entities
     {
         public int Id { get; set; }
         public EmployeeTypeEnums EmployeeTypeId { get; set; }
-        //public int EmployeeType { get; set; }
         public EmployeeType EmployeeType { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

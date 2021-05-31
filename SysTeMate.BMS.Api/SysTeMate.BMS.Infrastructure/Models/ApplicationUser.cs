@@ -8,7 +8,7 @@ namespace SysTeMate.BMS.Infrastructure.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public Employee Employee { get; set; }
+        private Employee Employee { get; set; }
 
         public int EmployeeId { get; set; }
     }

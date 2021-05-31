@@ -87,3 +87,7 @@ C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-Sy
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Api.pdb
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Api.genruntimeconfig.cache
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\FluentValidation.dll
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\MediatR.dll
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\MediatR.Extensions.Microsoft.DependencyInjection.dll

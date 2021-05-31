@@ -1,9 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "SkqVY1NwkEv20Smv8rW5/ktnrxWOfDI4BRboL8muTwSyVKttovmXapTkxQ3kvgS3ArGzvKu8RD/dAqWUZqzdmA==",
+  "dgSpecHash": "BDSgv5X6qL6e7EndtheWpGbIYthsJVX29tfcXmuJJ95WZ0KV9ULxK2d3ow4ygpjEAO200W679rR2Nd7+bg2BtQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\peter.john.hugo\\Documents\\Learnings\\Repositories\\Business-Management-System\\SysTeMate.BMS.Api\\SysTeMate.BMS.Application\\SysTeMate.BMS.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\peter.john.hugo\\.nuget\\packages\\fluentvalidation\\9.0.1\\fluentvalidation.9.0.1.nupkg.sha512",
+    "C:\\Users\\peter.john.hugo\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.0.1\\fluentvalidation.dependencyinjectionextensions.9.0.1.nupkg.sha512",
+    "C:\\Users\\peter.john.hugo\\.nuget\\packages\\mediatr\\8.0.0\\mediatr.8.0.0.nupkg.sha512",
+    "C:\\Users\\peter.john.hugo\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\8.0.0\\mediatr.extensions.microsoft.dependencyinjection.8.0.0.nupkg.sha512",
     "C:\\Users\\peter.john.hugo\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\peter.john.hugo\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\peter.john.hugo\\.nuget\\packages\\microsoft.entityframeworkcore\\3.1.1\\microsoft.entityframeworkcore.3.1.1.nupkg.sha512",
