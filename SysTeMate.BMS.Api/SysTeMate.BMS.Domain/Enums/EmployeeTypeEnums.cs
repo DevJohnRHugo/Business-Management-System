@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SysTeMate.BMS.Domain.Enum
+namespace SysTeMate.BMS.Domain.Enums
 {
-    public enum EmployeeType
+    public enum EmployeeTypeEnums
     {
         Manager = 1,
         Supervisor = 2,

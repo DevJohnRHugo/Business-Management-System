@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SysTeMate.BMS.Domain.Enum;
+using SysTeMate.BMS.Domain.Enums;
 
 namespace SysTeMate.BMS.Domain.Entities
 {
     public class Employee
     {
         public int Id { get; set; }
+        public EmployeeTypeEnums EmployeeTypeId { get; set; }
+        //public int EmployeeType { get; set; }
         public EmployeeType EmployeeType { get; set; }
-        public int EmployeeTypeId { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }

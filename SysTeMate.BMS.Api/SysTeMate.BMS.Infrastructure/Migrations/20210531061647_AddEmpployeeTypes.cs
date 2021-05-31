@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SysTeMate.BMS.Infrastructure.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class AddEmpployeeTypes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,23 +39,15 @@ namespace SysTeMate.BMS.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employee",
+                name: "EmployeeTypes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmployeeType = table.Column<int>(nullable: false),
                     EmployeeTypeId = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(nullable: true),
-                    MiddleName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    EmailAddress = table.Column<string>(nullable: true),
-                    EmployeeAddress = table.Column<string>(nullable: true),
-                    Birthdate = table.Column<DateTime>(nullable: false)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employee", x => x.Id);
+                    table.PrimaryKey("PK_EmployeeTypes", x => x.EmployeeTypeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -97,6 +89,31 @@ namespace SysTeMate.BMS.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeTypeId = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    MiddleName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    EmailAddress = table.Column<string>(nullable: true),
+                    EmployeeAddress = table.Column<string>(nullable: true),
+                    Birthdate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Employees_EmployeeTypes_EmployeeTypeId",
+                        column: x => x.EmployeeTypeId,
+                        principalTable: "EmployeeTypes",
+                        principalColumn: "EmployeeTypeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUsers",
                 columns: table => new
                 {
@@ -121,9 +138,9 @@ namespace SysTeMate.BMS.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_Employee_EmployeeId",
+                        name: "FK_AspNetUsers_Employees_EmployeeId",
                         column: x => x.EmployeeId,
-                        principalTable: "Employee",
+                        principalTable: "Employees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -213,6 +230,21 @@ namespace SysTeMate.BMS.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "EmployeeTypes",
+                columns: new[] { "EmployeeTypeId", "Name" },
+                values: new object[] { 1, "Manager" });
+
+            migrationBuilder.InsertData(
+                table: "EmployeeTypes",
+                columns: new[] { "EmployeeTypeId", "Name" },
+                values: new object[] { 2, "Supervisor" });
+
+            migrationBuilder.InsertData(
+                table: "EmployeeTypes",
+                columns: new[] { "EmployeeTypeId", "Name" },
+                values: new object[] { 3, "Staff" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -269,6 +301,11 @@ namespace SysTeMate.BMS.Infrastructure.Migrations
                 column: "Expiration");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Employees_EmployeeTypeId",
+                table: "Employees",
+                column: "EmployeeTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_Expiration",
                 table: "PersistedGrants",
                 column: "Expiration");
@@ -309,7 +346,10 @@ namespace SysTeMate.BMS.Infrastructure.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Employee");
+                name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeTypes");
         }
     }
 }

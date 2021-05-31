@@ -6,3 +6,4 @@ C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-Sy
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Domain\obj\Debug\netstandard2.1\SysTeMate.BMS.Domain.csproj.CoreCompileInputs.cache
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Domain\obj\Debug\netstandard2.1\SysTeMate.BMS.Domain.dll
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Domain\obj\Debug\netstandard2.1\SysTeMate.BMS.Domain.pdb
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Domain\obj\Debug\netstandard2.1\SysTeMate.BMS.Domain.csprojAssemblyReference.cache

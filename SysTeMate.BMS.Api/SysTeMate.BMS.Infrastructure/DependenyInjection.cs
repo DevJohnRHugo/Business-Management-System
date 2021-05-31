@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SysTeMate.BMS.Application.Common.Interfaces;
 using SysTeMate.BMS.Domain.DatabaseContext;
 using SysTeMate.BMS.Infrastructure.Models;
 
@@ -18,6 +19,8 @@ namespace SysTeMate.BMS.Domain
                 options.UseSqlServer(
                     configuration.GetConnectionString("BMSContext"),
                     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();

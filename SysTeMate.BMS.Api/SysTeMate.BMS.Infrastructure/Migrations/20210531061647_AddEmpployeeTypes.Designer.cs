@@ -10,8 +10,8 @@ using SysTeMate.BMS.Domain.DatabaseContext;
 namespace SysTeMate.BMS.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210529074207_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20210531061647_AddEmpployeeTypes")]
+    partial class AddEmpployeeTypes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -254,9 +254,6 @@ namespace SysTeMate.BMS.Infrastructure.Migrations
                     b.Property<string>("EmployeeAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployeeType")
-                        .HasColumnType("int");
-
                     b.Property<int>("EmployeeTypeId")
                         .HasColumnType("int");
 
@@ -271,7 +268,39 @@ namespace SysTeMate.BMS.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employee");
+                    b.HasIndex("EmployeeTypeId");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("SysTeMate.BMS.Domain.Entities.EmployeeType", b =>
+                {
+                    b.Property<int>("EmployeeTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EmployeeTypeId");
+
+                    b.ToTable("EmployeeTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            EmployeeTypeId = 1,
+                            Name = "Manager"
+                        },
+                        new
+                        {
+                            EmployeeTypeId = 2,
+                            Name = "Supervisor"
+                        },
+                        new
+                        {
+                            EmployeeTypeId = 3,
+                            Name = "Staff"
+                        });
                 });
 
             modelBuilder.Entity("SysTeMate.BMS.Infrastructure.Models.ApplicationUser", b =>
@@ -391,6 +420,15 @@ namespace SysTeMate.BMS.Infrastructure.Migrations
                     b.HasOne("SysTeMate.BMS.Infrastructure.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SysTeMate.BMS.Domain.Entities.Employee", b =>
+                {
+                    b.HasOne("SysTeMate.BMS.Domain.Entities.EmployeeType", "EmployeeType")
+                        .WithMany("Emplyees")
+                        .HasForeignKey("EmployeeTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
