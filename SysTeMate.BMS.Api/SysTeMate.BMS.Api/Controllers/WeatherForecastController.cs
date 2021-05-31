@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SysTeMate.BMS.Api.Controllers
+namespace SysTeMate.BMS.Domain.Controllers
 {
     [Authorize]
     [ApiController]

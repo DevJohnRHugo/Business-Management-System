@@ -1,0 +1,8 @@
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Domain\bin\Debug\netstandard2.1\SysTeMate.BMS.Domain.deps.json
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Domain\bin\Debug\netstandard2.1\SysTeMate.BMS.Domain.dll
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Domain\bin\Debug\netstandard2.1\SysTeMate.BMS.Domain.pdb
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Domain\obj\Debug\netstandard2.1\SysTeMate.BMS.Domain.AssemblyInfoInputs.cache
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Domain\obj\Debug\netstandard2.1\SysTeMate.BMS.Domain.AssemblyInfo.cs
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Domain\obj\Debug\netstandard2.1\SysTeMate.BMS.Domain.csproj.CoreCompileInputs.cache
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Domain\obj\Debug\netstandard2.1\SysTeMate.BMS.Domain.dll
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Domain\obj\Debug\netstandard2.1\SysTeMate.BMS.Domain.pdb

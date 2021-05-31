@@ -1,6 +1,6 @@
 using System;
 
-namespace SysTeMate.BMS.Api
+namespace SysTeMate.BMS.Domain
 {
     public class WeatherForecast
     {

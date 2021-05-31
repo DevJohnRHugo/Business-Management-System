@@ -1,0 +1,17 @@
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\bin\Debug\netcoreapp3.1\SysTeMate.BMS.Infrastructure.deps.json
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\bin\Debug\netcoreapp3.1\SysTeMate.BMS.Infrastructure.runtimeconfig.json
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\bin\Debug\netcoreapp3.1\SysTeMate.BMS.Infrastructure.runtimeconfig.dev.json
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\bin\Debug\netcoreapp3.1\SysTeMate.BMS.Infrastructure.dll
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\bin\Debug\netcoreapp3.1\SysTeMate.BMS.Infrastructure.pdb
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\bin\Debug\netcoreapp3.1\SysTeMate.BMS.Application.dll
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\bin\Debug\netcoreapp3.1\SysTeMate.BMS.Domain.dll
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\bin\Debug\netcoreapp3.1\SysTeMate.BMS.Application.pdb
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\bin\Debug\netcoreapp3.1\SysTeMate.BMS.Domain.pdb
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Infrastructure.csprojAssemblyReference.cache
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Infrastructure.AssemblyInfo.cs
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Infrastructure.csproj.CopyComplete
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Infrastructure.dll
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Infrastructure.pdb
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Infrastructure\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Infrastructure.genruntimeconfig.cache
