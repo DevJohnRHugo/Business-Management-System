@@ -44,6 +44,43 @@ namespace SysTeMate.BMS.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "5e27c572-4e20-4f16-91a9-0cafcd2cd140",
+                            ConcurrencyStamp = "a79cdccd-d9d4-47fa-933f-b30690850c45",
+                            Name = "CanManagerOrders",
+                            NormalizedName = "CANMANAGERORDERS"
+                        },
+                        new
+                        {
+                            Id = "9436a689-7a6d-4cf5-ac91-15fb5f637399",
+                            ConcurrencyStamp = "f9ba4da2-b0fc-4b27-ae9e-6f0f3a2ef61a",
+                            Name = "CanProcessOrders",
+                            NormalizedName = "CANPROCESSORDERS"
+                        },
+                        new
+                        {
+                            Id = "7ddee610-8f52-406c-bb52-66f51043330a",
+                            ConcurrencyStamp = "a7cc7edf-cfda-45d1-ab6b-72362cbbb494",
+                            Name = "CanAddToInventory",
+                            NormalizedName = "CANADDTOINVENTORY"
+                        },
+                        new
+                        {
+                            Id = "b850a827-76cc-4626-aa9e-8809230f005e",
+                            ConcurrencyStamp = "c8fc66ff-9847-4b8c-910f-cda016769418",
+                            Name = "CanRemoveAnInventory",
+                            NormalizedName = "CANREMOVEANINVENTORY"
+                        },
+                        new
+                        {
+                            Id = "45ad09be-acbe-49b6-ab45-f8d1fa4eb980",
+                            ConcurrencyStamp = "17524ae9-cf00-47b2-abb8-d1cb3e54cde0",
+                            Name = "CanManageUserAccounts",
+                            NormalizedName = "CANMANAGEUSERACCOUNTS"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

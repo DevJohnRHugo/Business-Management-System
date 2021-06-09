@@ -6,20 +6,18 @@ using System.Threading;
 using System.Threading.Tasks;
 using SysTeMate.BMS.Application.ApplicationUsers.Commands;
 using SysTeMate.BMS.Application.ApplicationUsers.ViewModels;
+//using SysTeMate.BMS.Application.Common.Abstracts;
 using SysTeMate.BMS.Application.Common.Interfaces;
 
 namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApplicationUserVm>
-    {       
-        private readonly ApplicationUserVm _applicationUserVm;
-        private readonly IApplicationDbContext _context;
+    {
+        private readonly ApplicationUserVm _applicationUserVm;        
         private readonly IIdentityService _identityService;
-        //private readonly ApplicationUser
 
-        public CreateUserCommandHandler(IApplicationDbContext context, ApplicationUserVm applicationUserVm, IIdentityService identityService)
+        public CreateUserCommandHandler(ApplicationUserVm applicationUserVm, IIdentityService identityService)
         {
-            _context = context;
             _applicationUserVm = applicationUserVm;
             _identityService = identityService;
         }
@@ -28,10 +26,14 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers
         {
             _applicationUserVm.EmployeeId = request.EmployeeId;
             _applicationUserVm.UserName = request.UserName;
-            _applicationUserVm.IsSuccess = true;
-            _applicationUserVm.Message = "Ok";
 
-            await _identityService.CreateAsync(_applicationUserVm.UserName, _applicationUserVm.Password);
+            var createSuccess = _identityService.CreateUser(request.UserName, request.Password, request.Roles).Result;
+
+            if (createSuccess)
+            {               
+                _applicationUserVm.IsSuccess = true;
+                _applicationUserVm.Message = "User successfully created!";
+            }
 
             return _applicationUserVm;
         }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SysTeMate.BMS.Domain.Enums
 {
-    public enum EmployeeTypeEnums
+    public enum EmployeeTypesEnum
     {
         Manager = 1,
         Supervisor = 2,

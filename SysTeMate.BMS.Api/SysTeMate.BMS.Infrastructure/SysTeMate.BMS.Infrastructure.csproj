@@ -19,4 +19,8 @@
     <ProjectReference Include="..\SysTeMate.BMS.Application\SysTeMate.BMS.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abstracts\" />
+  </ItemGroup>
+
 </Project>

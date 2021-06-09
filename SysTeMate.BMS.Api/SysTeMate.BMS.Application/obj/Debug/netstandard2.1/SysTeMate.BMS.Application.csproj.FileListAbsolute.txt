@@ -3,10 +3,10 @@ C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-Sy
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Application\bin\Debug\netstandard2.1\SysTeMate.BMS.Application.pdb
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Application\bin\Debug\netstandard2.1\SysTeMate.BMS.Domain.dll
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Application\bin\Debug\netstandard2.1\SysTeMate.BMS.Domain.pdb
-C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Application\obj\Debug\netstandard2.1\SysTeMate.BMS.Application.csprojAssemblyReference.cache
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Application\obj\Debug\netstandard2.1\SysTeMate.BMS.Application.AssemblyInfoInputs.cache
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Application\obj\Debug\netstandard2.1\SysTeMate.BMS.Application.AssemblyInfo.cs
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Application\obj\Debug\netstandard2.1\SysTeMate.BMS.Application.csproj.CoreCompileInputs.cache
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Application\obj\Debug\netstandard2.1\SysTeMate.BMS.Application.csproj.CopyComplete
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Application\obj\Debug\netstandard2.1\SysTeMate.BMS.Application.dll
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Application\obj\Debug\netstandard2.1\SysTeMate.BMS.Application.pdb
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Application\obj\Debug\netstandard2.1\SysTeMate.BMS.Application.csproj.AssemblyReference.cache

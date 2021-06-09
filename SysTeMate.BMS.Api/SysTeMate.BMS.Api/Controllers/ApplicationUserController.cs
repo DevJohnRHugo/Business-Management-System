@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using SysTeMate.BMS.Application.ApplicationUsers.ViewModels;
 
 namespace SysTeMate.BMS.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/account")]
     [ApiController]
     public class ApplicationUserController : ApiController
     {
@@ -19,8 +20,20 @@ namespace SysTeMate.BMS.Api.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<ActionResult<ApplicationUserVm>> Create(CreateUserCommand command)
+        {
+            return await Mediator.Send(command);
+        }
+
+        [HttpPut("update")]
+        public async Task<ActionResult<ApplicationUserVm>> Update(UpdateUserCommand command)
+        {
+            return await Mediator.Send(command);
+        }
+
+        [HttpDelete("delete")]
+        public async Task<ActionResult<ApplicationUserVm>> Delete(DeleteUserCommand command)
         {
             return await Mediator.Send(command);
         }

@@ -7,11 +7,12 @@ using SysTeMate.BMS.Domain.Entities;
 
 namespace SysTeMate.BMS.Application.ApplicationUsers.Commands
 {
-    public class CreateUserCommand: IRequest<ApplicationUserVm>
+    public class CreateUserCommand : IRequest<ApplicationUserVm>
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public IEnumerable<string> Roles { get; set; }
 
         public Employee Employee { get; set; }
 
