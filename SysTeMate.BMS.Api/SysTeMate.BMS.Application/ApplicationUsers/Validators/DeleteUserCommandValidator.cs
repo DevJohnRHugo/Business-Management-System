@@ -10,8 +10,8 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.Validators
     {
         public DeleteUserCommandValidator()
         {
-            RuleFor(v => v.UserName).NotNull();
-            RuleFor(v => v.UserName).NotEmpty();
+            RuleFor(v => v.Id).NotNull();
+            RuleFor(v => v.Id).NotEmpty();
         }
     }
 }

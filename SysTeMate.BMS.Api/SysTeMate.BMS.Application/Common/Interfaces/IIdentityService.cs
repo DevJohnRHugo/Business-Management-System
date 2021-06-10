@@ -10,9 +10,11 @@ namespace SysTeMate.BMS.Application.Common.Interfaces
 {
     public interface IIdentityService
     {     
-        Task<bool> CreateUser(string userName, string password, IEnumerable<string> roles);
-        Task<bool> UpdateUser(string id, string userName, string password, string newPassword, IEnumerable<string> roles);
-        Task CreateRole(string roleType);
-        Task<bool> DeleteUser(string userName);
+        Task<bool> CreateUser(CreateUserCommand request);
+        Task<bool> UpdateUser(UpdateUserCommand request);
+        Task<bool> DeleteUser(Guid id);
+        Task<bool> SignIn(SignInUserCommand request);
+        Task SignOut();
+        //Task<TApplicationUser> GetApplicationUser<TApplicationUser>(string id);
     }
 }

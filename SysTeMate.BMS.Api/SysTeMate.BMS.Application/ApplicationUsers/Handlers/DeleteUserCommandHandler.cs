@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,30 +14,32 @@ using SysTeMate.BMS.Application.Common.Interfaces;
 namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers
 {
     public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, ApplicationUserVm>
-    {
-        private readonly ApplicationUserVm _applicationUserVm;
+    {        
         private readonly IIdentityService _identityService;
+        private readonly IMapper _mapper;
 
-        public DeleteUserCommandHandler(IIdentityService identityService, ApplicationUserVm applicationUserVm)
+        public DeleteUserCommandHandler(IIdentityService identityService, IMapper mapper)
         {
             _identityService = identityService;
-            _applicationUserVm = applicationUserVm;
+            _mapper = mapper;
         }
 
         public async Task<ApplicationUserVm> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
-            _applicationUserVm.EmployeeId = request.EmployeeId;
-            _applicationUserVm.UserName = request.UserName;
-      
+            var applicationUserVm = _mapper.Map<ApplicationUserVm>(request);
             var deleteSuccess =  await _identityService.DeleteUser(request.Id);
 
             if (deleteSuccess)
             {
-                _applicationUserVm.IsSuccess = true;
-                _applicationUserVm.Message = "user successfuly deleted";
+                applicationUserVm.IsSuccess = true;
+                applicationUserVm.Message = "user successfuly deleted";
+            }
+            else
+            {
+                applicationUserVm.Message = "Failed to delete user!";
             }
 
-            return _applicationUserVm;
+            return applicationUserVm;
         }
     }
 }

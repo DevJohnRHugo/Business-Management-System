@@ -16,8 +16,6 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.Validators
             RuleFor(v => v.UserName).NotEmpty();
             RuleFor(v => v.Password).NotNull();
             RuleFor(v => v.Password).NotEmpty();
-            //RuleFor(v => v.Roles).NotNull();
-            //RuleFor(v => v.Roles).NotEmpty();
         }
     }
 }

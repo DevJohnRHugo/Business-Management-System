@@ -8,12 +8,10 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.ViewModels
 {
     public class ApplicationUserVm : BaseViewModelReponse
     {
-        public int Id { get; set; }
+        //public Guid Id { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-
         private Employee Employee { get; set; }
-
         public int EmployeeId { get; set; }
     }
 }

@@ -1,10 +1,12 @@
-﻿using FluentValidation;
+﻿using AutoMapper;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+//using SysTeMate.BMS.Application.ApplicationUsers.Memento;
 using SysTeMate.BMS.Application.ApplicationUsers.ViewModels;
 using SysTeMate.BMS.Application.Common.Behaviors;
 
@@ -18,7 +20,8 @@ namespace SysTeMate.BMS.Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddScoped<ApplicationUserVm>();
-
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            
             return services;
         }
     }

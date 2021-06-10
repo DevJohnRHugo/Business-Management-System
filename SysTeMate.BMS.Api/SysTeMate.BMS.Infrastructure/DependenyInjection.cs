@@ -1,14 +1,18 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
+using SysTeMate.BMS.Application.ApplicationUsers.Interfaces.Memento;
 using SysTeMate.BMS.Application.Common.Interfaces;
 using SysTeMate.BMS.Domain.DatabaseContext;
-using SysTeMate.BMS.Infrastructure.DatabaseContext;
+using SysTeMate.BMS.Infrastructure.ApplicationUsers.Memento;
+using SysTeMate.BMS.Infrastructure.Identity;
 using SysTeMate.BMS.Infrastructure.Models;
 
 namespace SysTeMate.BMS.Domain
@@ -27,7 +31,12 @@ namespace SysTeMate.BMS.Domain
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddTransient<IIdentityService, IdentityService>();         
+            services.AddTransient<IIdentityService, IdentityService>();
+
+            services.AddScoped<IUserCredential<UserCredentialState>, UserCredential>();
+            services.AddScoped<IUserCredentialHistory<UserCredentialState>, UserCredentialHistory>();
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();

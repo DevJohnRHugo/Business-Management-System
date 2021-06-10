@@ -62,7 +62,10 @@ C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-Sy
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
@@ -77,6 +80,7 @@ C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-Sy
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\SysTeMate.BMS.Application.pdb
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\SysTeMate.BMS.Infrastructure.pdb
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\SysTeMate.BMS.Domain.pdb
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Api.csproj.AssemblyReference.cache
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Api.AssemblyInfoInputs.cache
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Api.AssemblyInfo.cs
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Api.csproj.CoreCompileInputs.cache
@@ -90,7 +94,4 @@ C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-Sy
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Api.dll
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Api.pdb
 C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Api.genruntimeconfig.cache
-C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\obj\Debug\netcoreapp3.1\SysTeMate.BMS.Api.csproj.AssemblyReference.cache
-C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
-C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Users\peter.john.hugo\Documents\Learnings\Repositories\Business-Management-System\SysTeMate.BMS.Api\SysTeMate.BMS.Api\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

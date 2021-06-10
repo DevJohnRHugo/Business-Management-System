@@ -9,15 +9,10 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.Commands
 {
     public class DeleteUserCommand : IRequest<ApplicationUserVm>
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string UserName { get; set; }
-        public string Password { get; set; }
-        //public  IEnumerable<string> RoleType { get; set; }
-
-        public string RoleType { get; set; }
-
-        public Employee Employee { get; set; }
-
-        public int EmployeeId { get; set; }
+        //public string Password { get; set; }
+        //public Employee Employee { get; set; }
+        //public int EmployeeId { get; set; }
     }
 }

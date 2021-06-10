@@ -9,7 +9,7 @@ using SysTeMate.BMS.Domain.Enums;
 
 namespace SysTeMate.BMS.Infrastructure.DatabaseContext
 {
-    public static class ModelBuilderExtension
+    public static class SeedModelBuilderExtension
     {
         public static void Seed(this ModelBuilder builder)
         {          

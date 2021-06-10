@@ -9,13 +9,12 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.Commands
 {
     public class UpdateUserCommand : IRequest<ApplicationUserVm>
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string NewPassword { get; set; }
         public IEnumerable<string> Roles { get; set; }
         public Employee Employee { get; set; }
-
         public int EmployeeId { get; set; }
     }
 }

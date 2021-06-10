@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SysTeMate.BMS.Domain.Constants
 {
-    public class IdentityUserRoles
+    public class Role
     {
         public const string CanManageOrders = "CanManagerOrders";
         public const string CanProcessOrders = "CanProcessOrders";

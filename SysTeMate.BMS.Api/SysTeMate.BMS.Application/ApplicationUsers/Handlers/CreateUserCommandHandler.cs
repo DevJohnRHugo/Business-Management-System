@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,30 +13,32 @@ using SysTeMate.BMS.Application.Common.Interfaces;
 namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApplicationUserVm>
-    {
-        private readonly ApplicationUserVm _applicationUserVm;        
+    {       
         private readonly IIdentityService _identityService;
+        private readonly IMapper _mapper;
 
-        public CreateUserCommandHandler(ApplicationUserVm applicationUserVm, IIdentityService identityService)
+        public CreateUserCommandHandler(IIdentityService identityService, IMapper mapper)
         {
-            _applicationUserVm = applicationUserVm;
             _identityService = identityService;
+            _mapper = mapper;
         }
 
         public async Task<ApplicationUserVm> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            _applicationUserVm.EmployeeId = request.EmployeeId;
-            _applicationUserVm.UserName = request.UserName;
-
-            var createSuccess = _identityService.CreateUser(request.UserName, request.Password, request.Roles).Result;
+            var applicationUserVm = _mapper.Map<ApplicationUserVm>(request);    
+            var createSuccess = await _identityService.CreateUser(request);
 
             if (createSuccess)
             {               
-                _applicationUserVm.IsSuccess = true;
-                _applicationUserVm.Message = "User successfully created!";
+                applicationUserVm.IsSuccess = true;
+                applicationUserVm.Message = "User successfully created!";
+            }
+            else
+            {
+                applicationUserVm.Message = "Failed to create user!";
             }
 
-            return _applicationUserVm;
+            return applicationUserVm;
         }
     }
 }

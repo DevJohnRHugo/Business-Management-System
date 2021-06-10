@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "/sIzBIFBG4fwPnhkDol5mpYXQ+G/s9r2ozQDT9z0MmDgG79KZupW3dwi8TpAK9nsYJxL6/owQdy8XQuzFdh5gA==",
+  "dgSpecHash": "oTDWSg6tkuSJuZiTomxkFWM+jcit2cOC3lFt88wuFBfk8oQmXdCyMIVO33xESAEk1nosGzZT/CiHi5ncTIxh3A==",
   "success": true,
   "projectFilePath": "C:\\Users\\peter.john.hugo\\Documents\\Learnings\\Repositories\\Business-Management-System\\SysTeMate.BMS.Api\\SysTeMate.BMS.Api\\SysTeMate.BMS.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\peter.john.hugo\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
+    "C:\\Users\\peter.john.hugo\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\peter.john.hugo\\.nuget\\packages\\fluentvalidation\\9.0.1\\fluentvalidation.9.0.1.nupkg.sha512",
     "C:\\Users\\peter.john.hugo\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.0.1\\fluentvalidation.dependencyinjectionextensions.9.0.1.nupkg.sha512",
     "C:\\Users\\peter.john.hugo\\.nuget\\packages\\identitymodel\\4.0.0\\identitymodel.4.0.0.nupkg.sha512",
