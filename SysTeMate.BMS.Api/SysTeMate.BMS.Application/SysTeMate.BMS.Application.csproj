@@ -9,7 +9,6 @@
     <Folder Include="Employees\Handlers\" />
     <Folder Include="Employees\ViewModels\" />
     <Folder Include="Employees\Queries\" />
-    <Folder Include="ApplicationUsers\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

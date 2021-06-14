@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SysTeMate.BMS.Application.ApplicationUsers.Commands;
 using SysTeMate.BMS.Application.ApplicationUsers.Interfaces.Memento;
+using SysTeMate.BMS.Application.ApplicationUsers.Queries;
 using SysTeMate.BMS.Application.ApplicationUsers.ViewModels;
 using SysTeMate.BMS.Application.Common.Helpers;
 using SysTeMate.BMS.Application.Common.Interfaces;
@@ -21,15 +22,15 @@ namespace SysTeMate.BMS.Infrastructure.Identity
     public class IdentityService : IIdentityService
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        //private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IUserCredentialHistory<UserCredentialState> _credentialHistory;
         private readonly IMapper _mapper;
 
-        public IdentityService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IUserCredentialHistory<UserCredentialState> credentialHistory, IMapper mapper, SignInManager<ApplicationUser> signInManager)
+        public IdentityService(UserManager<ApplicationUser> userManager/*, RoleManager<IdentityRole> roleManager*/, IUserCredentialHistory<UserCredentialState> credentialHistory, IMapper mapper, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
+            //_roleManager = roleManager;
             _credentialHistory = credentialHistory;
             _mapper = mapper;
             _signInManager = signInManager;
@@ -39,18 +40,18 @@ namespace SysTeMate.BMS.Infrastructure.Identity
         {
             var user = new ApplicationUser
             {
-                UserName = request.UserName,
-                EmployeeId = request.EmployeeId
+                UserName = request.AppUserDto.UserName,
+                EmployeeId = request.AppUserDto.EmployeeId
             };
 
-            var result = await CreateUserProcessAsync(request, user);
+            var result = await CreateUserProcess(request, user);
 
             return result;
         }
 
         public async Task<bool> SignIn(SignInUserCommand request)
         {
-            var result = await _signInManager.PasswordSignInAsync(request.UserName, request.Password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(request.AppUserDto.UserName, request.AppUserDto.Password, false, false);
 
             return (result.Succeeded) ? true : false;
         }
@@ -62,16 +63,18 @@ namespace SysTeMate.BMS.Infrastructure.Identity
 
         public async Task<bool> UpdateUser(UpdateUserCommand request)
         {
-            var user = await GetApplicationUser(request.Id);
-            var currentRoles = await GetApplicationUserRolesAsync(user);
-            _credentialHistory.AddStates(user.UserName, request.Password, currentRoles, user.EmployeeId);
-            user.UserName = request.UserName;
-            user.EmployeeId = request.EmployeeId;
+            var user = await GetApplicationUser(request.AppUserDto.Id);
+            var currentRoles = await GetApplicationUserRoles(user);
 
-            if (NullChecker.IsNull(user) || !await UpdateUserCredentialsAsync(user, request.Password, request.NewPassword))
+            _credentialHistory.AddStates(user.UserName, request.AppUserDto.Password, currentRoles, user.EmployeeId);
+
+            user.UserName = request.AppUserDto.UserName;
+            user.EmployeeId = request.AppUserDto.EmployeeId;
+
+            if (NullChecker.IsNull(user) || !await UpdateUserCredentials(user, request.AppUserDto.Password, request.AppUserDto.NewPassword))
                 return false;
 
-            return await AddUserRolesAsync(user, request.Password, request.NewPassword, request.Roles);
+            return await AddUserRoles(user, request.AppUserDto.Password, request.AppUserDto.NewPassword, request.AppUserDto.Roles);
         }
 
         public async Task<bool> DeleteUser(Guid id)
@@ -80,21 +83,61 @@ namespace SysTeMate.BMS.Infrastructure.Identity
             return NullChecker.IsNull(user) ? false : _userManager.DeleteAsync(user).Result.Succeeded;
         }
 
+        public async Task<ApplicationUserListVm> GetApplicationUsers(GetApplicationUserQuery request = null)
+        {
+            try
+            {
+                var appUserList = new ApplicationUserListVm();
+
+                if (request.Id != null)
+                {
+                    var user = await GetApplicationUser(request.Id.Value);
+                    appUserList.ApplicationUserVms = new List<ApplicationUserDto>
+                    {
+                        new ApplicationUserDto
+                        {
+                          UserName = user.UserName,
+                          Password = user.PasswordHash,
+                          EmployeeId = user.EmployeeId,
+                          Roles = _userManager.GetRolesAsync(user).Result
+                        }
+                    };
+                }
+                else
+                {
+                    appUserList.ApplicationUserVms = _userManager.Users.ToList().Select(x => new ApplicationUserDto
+                    {
+                        UserName = x.UserName,
+                        Password = x.PasswordHash,
+                        EmployeeId = x.EmployeeId,
+                        Roles = _userManager.GetRolesAsync(x).Result
+                    }).ToList();
+                }
+
+                return appUserList;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
         private async Task<ApplicationUser> GetApplicationUser(Guid id)
         {
             return await _userManager.FindByIdAsync(id.ToString()) ?? null;
         }
 
-        private async Task<IEnumerable<string>> GetApplicationUserRolesAsync(ApplicationUser user)
+        private async Task<IEnumerable<string>> GetApplicationUserRoles(ApplicationUser user)
         {
             return await _userManager.GetRolesAsync(user) ?? null;
         }
 
-        private async Task<bool> CreateUserProcessAsync(CreateUserCommand request, ApplicationUser user)
+        private async Task<bool> CreateUserProcess(CreateUserCommand request, ApplicationUser user)
         {
             var result = false;
-            var createUser = await _userManager.CreateAsync(user, request.Password);
-            var addRoles = await _userManager.AddToRolesAsync(user, request.Roles);
+            var createUser = await _userManager.CreateAsync(user, request.AppUserDto.Password);
+            var addRoles = await _userManager.AddToRolesAsync(user, request.AppUserDto.Roles);
 
             if (!createUser.Succeeded && !addRoles.Succeeded)
             {
@@ -109,7 +152,7 @@ namespace SysTeMate.BMS.Infrastructure.Identity
             return result;
         }
 
-        private async Task<bool> UpdateUserCredentialsAsync(ApplicationUser user, string password, string newPassword)
+        private async Task<bool> UpdateUserCredentials(ApplicationUser user, string password, string newPassword)
         {
             var updateUser = await _userManager.UpdateAsync(user);
             var updatePassword = await _userManager.ChangePasswordAsync(user, password, newPassword);
@@ -120,7 +163,7 @@ namespace SysTeMate.BMS.Infrastructure.Identity
             return !updateUser.Succeeded || !updatePassword.Succeeded ? false : true;
         }
 
-        private async Task<bool> AddUserRolesAsync(ApplicationUser user, string password, string newPassword, IEnumerable<string> roles)
+        private async Task<bool> AddUserRoles(ApplicationUser user, string password, string newPassword, IEnumerable<string> roles)
         {
             var result = false;
             await _userManager.RemoveFromRolesAsync(user, await _userManager.GetRolesAsync(user));
@@ -139,6 +182,6 @@ namespace SysTeMate.BMS.Infrastructure.Identity
             }
 
             return result;
-        }      
+        }
     }
 }

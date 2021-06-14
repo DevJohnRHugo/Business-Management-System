@@ -5,8 +5,8 @@ using SysTeMate.BMS.Application.Common.ViewModels;
 
 namespace SysTeMate.BMS.Application.ApplicationUsers.ViewModels
 {
-    public class ApplicationUserVm : BaseViewModelReponse
+    public class ApplicationUserListVm : BaseViewModelReponse
     {
-        public ApplicationUserDto AppUserDto { get; set; }
+        public IList<ApplicationUserDto> ApplicationUserVms { get; set; }
     }
 }

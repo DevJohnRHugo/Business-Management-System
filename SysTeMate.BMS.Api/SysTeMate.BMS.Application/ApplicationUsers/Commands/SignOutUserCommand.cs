@@ -6,7 +6,7 @@ using SysTeMate.BMS.Application.ApplicationUsers.ViewModels;
 
 namespace SysTeMate.BMS.Application.ApplicationUsers.Commands
 {
-    public class SignOutUserCommand : IRequest<ApplicationUserVm>
+    public class SignOutUserCommand : IRequest
     {
         public string UserName { get; set; }
     }

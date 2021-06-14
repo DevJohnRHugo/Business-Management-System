@@ -9,7 +9,7 @@ using SysTeMate.BMS.Application.ApplicationUsers.Commands;
 using SysTeMate.BMS.Application.ApplicationUsers.ViewModels;
 using SysTeMate.BMS.Application.Common.Interfaces;
 
-namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers
+namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers.Commands
 {
     public class SignInUserCommandHandler : IRequestHandler<SignInUserCommand, ApplicationUserVm>
     {

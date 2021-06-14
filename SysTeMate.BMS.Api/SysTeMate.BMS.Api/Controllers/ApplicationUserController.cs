@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SysTeMate.BMS.Application.ApplicationUsers.Commands;
+using SysTeMate.BMS.Application.ApplicationUsers.Queries;
 using SysTeMate.BMS.Application.ApplicationUsers.ViewModels;
 using SysTeMate.BMS.Domain.Constants;
+using SysTeMate.BMS.Infrastructure.Models;
 
 namespace SysTeMate.BMS.Api.Controllers
 {
@@ -37,9 +39,22 @@ namespace SysTeMate.BMS.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost("sign-out")]
-        public async Task<ActionResult<ApplicationUserVm>> SignOut([FromBody] string userName)
+        public async Task<ActionResult<ApplicationUserVm>> SignOut()
         {
-            return await Mediator.Send(new SignOutUserCommand { UserName = userName });
+            await Mediator.Send(new SignOutUserCommand());
+            return NoContent();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ApplicationUserListVm> GetUser(Guid id)
+        {
+            return await Mediator.Send(new GetApplicationUserQuery { Id = id });
+        }
+
+        [HttpGet("all")]
+        public async Task<ApplicationUserListVm> GetUsers()
+        {
+            return await Mediator.Send(new GetApplicationUserQuery { Id = null });
         }
 
         [HttpPut]

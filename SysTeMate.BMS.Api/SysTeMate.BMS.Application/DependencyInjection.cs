@@ -19,7 +19,7 @@ namespace SysTeMate.BMS.Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-            services.AddScoped<ApplicationUserVm>();
+            services.AddScoped<ApplicationUserDto>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             
             return services;

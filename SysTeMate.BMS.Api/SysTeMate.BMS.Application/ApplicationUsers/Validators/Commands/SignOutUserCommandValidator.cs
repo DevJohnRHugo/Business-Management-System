@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using SysTeMate.BMS.Application.ApplicationUsers.Commands;
 
-namespace SysTeMate.BMS.Application.ApplicationUsers.Validators
+namespace SysTeMate.BMS.Application.ApplicationUsers.Validators.Commands
 {
     public class SignOutUserCommandValidator : AbstractValidator<SignOutUserCommand>
     {

@@ -9,9 +9,9 @@ using SysTeMate.BMS.Application.ApplicationUsers.Commands;
 using SysTeMate.BMS.Application.ApplicationUsers.ViewModels;
 using SysTeMate.BMS.Application.Common.Interfaces;
 
-namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers
+namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers.Commands
 {
-    public class SignOutCommandHandler : IRequestHandler<SignOutUserCommand, ApplicationUserVm>
+    public class SignOutCommandHandler : IRequestHandler<SignOutUserCommand>
     {
         private readonly IIdentityService _identityService;
         private readonly IMapper _mapper;
@@ -22,14 +22,10 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers
             _mapper = mapper;
         }
 
-        public async Task<ApplicationUserVm> Handle(SignOutUserCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(SignOutUserCommand request, CancellationToken cancellationToken)
         {
-            var applicationUserVm = _mapper.Map<ApplicationUserVm>(request);
             await _identityService.SignOut();
-
-            applicationUserVm.Message = "Successfully signed out";         
-
-            return applicationUserVm;
+            return Unit.Value;
         }
     }
 }

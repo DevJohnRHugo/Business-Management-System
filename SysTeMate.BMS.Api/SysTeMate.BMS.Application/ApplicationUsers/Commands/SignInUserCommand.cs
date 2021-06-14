@@ -8,7 +8,14 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.Commands
 {
     public class SignInUserCommand : IRequest<ApplicationUserVm>
     {
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        //public string UserName { get; set; }
+        //public string Password { get; set; }
+
+        public SignInUserCommand()
+        {
+            AppUserDto = new ApplicationUserDto();
+        }
+
+        public ApplicationUserDto AppUserDto { get; set; }
     }
 }

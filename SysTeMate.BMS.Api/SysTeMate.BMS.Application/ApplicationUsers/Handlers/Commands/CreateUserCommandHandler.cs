@@ -10,10 +10,10 @@ using SysTeMate.BMS.Application.ApplicationUsers.ViewModels;
 //using SysTeMate.BMS.Application.Common.Abstracts;
 using SysTeMate.BMS.Application.Common.Interfaces;
 
-namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers
+namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers.Commands
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApplicationUserVm>
-    {       
+    {
         private readonly IIdentityService _identityService;
         private readonly IMapper _mapper;
 
@@ -25,11 +25,11 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers
 
         public async Task<ApplicationUserVm> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var applicationUserVm = _mapper.Map<ApplicationUserVm>(request);    
+            var applicationUserVm = _mapper.Map<ApplicationUserVm>(request);
             var createSuccess = await _identityService.CreateUser(request);
 
             if (createSuccess)
-            {               
+            {
                 applicationUserVm.IsSuccess = true;
                 applicationUserVm.Message = "User successfully created!";
             }
