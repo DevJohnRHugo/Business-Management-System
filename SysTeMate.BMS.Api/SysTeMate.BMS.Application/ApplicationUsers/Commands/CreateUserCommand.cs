@@ -9,18 +9,18 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.Commands
 {
     public class CreateUserCommand : IRequest<ApplicationUserVm>
     {
-        //public Guid Id { get; set; }
-        //public string UserName { get; set; }
-        //public string Password { get; set; }
-        //public IEnumerable<string> Roles { get; set; }
-        //public Employee Employee { get; set; }
-        //public int EmployeeId { get; set; }
+        public Guid Id { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public IEnumerable<string> Roles { get; set; }
+        public Employee Employee { get; set; }
+        public int EmployeeId { get; set; }
 
-        public CreateUserCommand()
-        {
-            AppUserDto = new ApplicationUserDto();
-        }
+        //public CreateUserCommand()
+        //{
+        //    AppUserDto = new ApplicationUserDto();
+        //}
 
-        public ApplicationUserDto AppUserDto { get; set; }
+        //public ApplicationUserDto AppUserDto { get; set; }
     }
 }

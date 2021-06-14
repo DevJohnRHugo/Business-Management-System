@@ -10,12 +10,12 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.Validators.Commands
     {
         public UpdateUserCommandValidator()
         {
-            RuleFor(v => v.AppUserDto.EmployeeId).NotNull();
-            RuleFor(v => v.AppUserDto.EmployeeId).NotEmpty();
-            RuleFor(v => v.AppUserDto.UserName).NotNull();
-            RuleFor(v => v.AppUserDto.UserName).NotEmpty();
-            RuleFor(v => v.AppUserDto.Password).NotNull();
-            RuleFor(v => v.AppUserDto.Password).NotEmpty();
+            RuleFor(v => v.EmployeeId).NotNull();
+            RuleFor(v => v.EmployeeId).NotEmpty();
+            RuleFor(v => v.UserName).NotNull();
+            RuleFor(v => v.UserName).NotEmpty();
+            RuleFor(v => v.Password).NotNull();
+            RuleFor(v => v.Password).NotEmpty();
         }
     }
 }

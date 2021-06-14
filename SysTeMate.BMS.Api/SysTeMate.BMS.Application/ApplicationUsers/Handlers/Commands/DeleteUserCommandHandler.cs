@@ -27,7 +27,7 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers.Commands
         public async Task<ApplicationUserVm> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
             var applicationUserVm = _mapper.Map<ApplicationUserVm>(request);
-            var deleteSuccess = await _identityService.DeleteUser(request.AppUserDto.Id);
+            var deleteSuccess = await _identityService.DeleteUser(request.Id);
 
             if (deleteSuccess)
             {

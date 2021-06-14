@@ -10,6 +10,6 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.Interfaces.Memento
     {
         void AddStates(string userName, string password, IEnumerable<string> roles, int employeeId);
 
-        Task RevertStateAsync<TUserManager, TApplicationUser>(TApplicationUser user, TUserManager userManager, RollbackFrom rollback, string updatePassword);
+        Task RevertState<TUserManager, TApplicationUser>(TApplicationUser user, TUserManager userManager, RollbackFrom rollback, string updatePassword);
     }
 }

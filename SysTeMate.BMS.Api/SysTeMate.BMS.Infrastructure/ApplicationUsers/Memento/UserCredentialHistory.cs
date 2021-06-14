@@ -27,7 +27,7 @@ namespace SysTeMate.BMS.Infrastructure.ApplicationUsers.Memento
             AddAllCredentialState(userName, password, roles, employeeId);
         }
 
-        public async Task RevertStateAsync<TUserManager, TApplicationUser>(TApplicationUser user, TUserManager userManager, RollbackFrom rollback, string updatePassword)
+        public async Task RevertState<TUserManager, TApplicationUser>(TApplicationUser user, TUserManager userManager, RollbackFrom rollback, string updatePassword)
         {
             await RevertStateProcess(user as ApplicationUser, updatePassword, userManager as UserManager<ApplicationUser>, rollback);
         }

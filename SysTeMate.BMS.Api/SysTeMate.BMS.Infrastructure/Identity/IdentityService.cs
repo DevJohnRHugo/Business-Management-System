@@ -11,8 +11,6 @@ using SysTeMate.BMS.Application.ApplicationUsers.Queries;
 using SysTeMate.BMS.Application.ApplicationUsers.ViewModels;
 using SysTeMate.BMS.Application.Common.Helpers;
 using SysTeMate.BMS.Application.Common.Interfaces;
-using SysTeMate.BMS.Domain.Constants;
-using SysTeMate.BMS.Domain.Entities;
 using SysTeMate.BMS.Domain.Enums;
 using SysTeMate.BMS.Infrastructure.ApplicationUsers.Memento;
 using SysTeMate.BMS.Infrastructure.Models;
@@ -22,17 +20,13 @@ namespace SysTeMate.BMS.Infrastructure.Identity
     public class IdentityService : IIdentityService
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        //private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IUserCredentialHistory<UserCredentialState> _credentialHistory;
-        private readonly IMapper _mapper;
 
-        public IdentityService(UserManager<ApplicationUser> userManager/*, RoleManager<IdentityRole> roleManager*/, IUserCredentialHistory<UserCredentialState> credentialHistory, IMapper mapper, SignInManager<ApplicationUser> signInManager)
+        public IdentityService(UserManager<ApplicationUser> userManager, IUserCredentialHistory<UserCredentialState> credentialHistory, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
-            //_roleManager = roleManager;
             _credentialHistory = credentialHistory;
-            _mapper = mapper;
             _signInManager = signInManager;
         }
 
@@ -40,8 +34,8 @@ namespace SysTeMate.BMS.Infrastructure.Identity
         {
             var user = new ApplicationUser
             {
-                UserName = request.AppUserDto.UserName,
-                EmployeeId = request.AppUserDto.EmployeeId
+                UserName = request.UserName,
+                EmployeeId = request.EmployeeId
             };
 
             var result = await CreateUserProcess(request, user);
@@ -51,7 +45,7 @@ namespace SysTeMate.BMS.Infrastructure.Identity
 
         public async Task<bool> SignIn(SignInUserCommand request)
         {
-            var result = await _signInManager.PasswordSignInAsync(request.AppUserDto.UserName, request.AppUserDto.Password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(request.UserName, request.Password, false, false);
 
             return (result.Succeeded) ? true : false;
         }
@@ -63,18 +57,18 @@ namespace SysTeMate.BMS.Infrastructure.Identity
 
         public async Task<bool> UpdateUser(UpdateUserCommand request)
         {
-            var user = await GetApplicationUser(request.AppUserDto.Id);
+            var user = await GetApplicationUser(request.Id);
             var currentRoles = await GetApplicationUserRoles(user);
 
-            _credentialHistory.AddStates(user.UserName, request.AppUserDto.Password, currentRoles, user.EmployeeId);
+            _credentialHistory.AddStates(user.UserName, request.Password, currentRoles, user.EmployeeId);
 
-            user.UserName = request.AppUserDto.UserName;
-            user.EmployeeId = request.AppUserDto.EmployeeId;
+            user.UserName = request.UserName;
+            user.EmployeeId = request.EmployeeId;
 
-            if (NullChecker.IsNull(user) || !await UpdateUserCredentials(user, request.AppUserDto.Password, request.AppUserDto.NewPassword))
+            if (NullChecker.IsNull(user) || !await UpdateUserCredentials(user, request.Password, request.NewPassword))
                 return false;
 
-            return await AddUserRoles(user, request.AppUserDto.Password, request.AppUserDto.NewPassword, request.AppUserDto.Roles);
+            return await AddUserRoles(user, request.Password, request.NewPassword, request.Roles);
         }
 
         public async Task<bool> DeleteUser(Guid id)
@@ -92,25 +86,23 @@ namespace SysTeMate.BMS.Infrastructure.Identity
                 if (request.Id != null)
                 {
                     var user = await GetApplicationUser(request.Id.Value);
-                    appUserList.ApplicationUserVms = new List<ApplicationUserDto>
+                    appUserList.ApplicationUsers = new List<ApplicationUserDto>
                     {
                         new ApplicationUserDto
                         {
+                          Id = new Guid(user.Id),
                           UserName = user.UserName,
-                          Password = user.PasswordHash,
                           EmployeeId = user.EmployeeId,
-                          Roles = _userManager.GetRolesAsync(user).Result
                         }
                     };
                 }
                 else
                 {
-                    appUserList.ApplicationUserVms = _userManager.Users.ToList().Select(x => new ApplicationUserDto
+                    appUserList.ApplicationUsers = _userManager.Users.ToList().Select(user => new ApplicationUserDto
                     {
-                        UserName = x.UserName,
-                        Password = x.PasswordHash,
-                        EmployeeId = x.EmployeeId,
-                        Roles = _userManager.GetRolesAsync(x).Result
+                        Id = new Guid(user.Id),
+                        UserName = user.UserName,
+                        EmployeeId = user.EmployeeId,
                     }).ToList();
                 }
 
@@ -136,8 +128,8 @@ namespace SysTeMate.BMS.Infrastructure.Identity
         private async Task<bool> CreateUserProcess(CreateUserCommand request, ApplicationUser user)
         {
             var result = false;
-            var createUser = await _userManager.CreateAsync(user, request.AppUserDto.Password);
-            var addRoles = await _userManager.AddToRolesAsync(user, request.AppUserDto.Roles);
+            var createUser = await _userManager.CreateAsync(user, request.Password);
+            var addRoles = await _userManager.AddToRolesAsync(user, request.Roles);
 
             if (!createUser.Succeeded && !addRoles.Succeeded)
             {
@@ -158,7 +150,7 @@ namespace SysTeMate.BMS.Infrastructure.Identity
             var updatePassword = await _userManager.ChangePasswordAsync(user, password, newPassword);
 
             if (!updatePassword.Succeeded)
-                await _credentialHistory.RevertStateAsync(user, _userManager, RollbackFrom.UserNameAndEmpId, newPassword);
+                await _credentialHistory.RevertState(user, _userManager, RollbackFrom.UserNameAndEmpId, newPassword);
 
             return !updateUser.Succeeded || !updatePassword.Succeeded ? false : true;
         }
@@ -174,11 +166,13 @@ namespace SysTeMate.BMS.Infrastructure.Identity
 
                 if (!addRoleResult.Succeeded)
                 {
-                    await _credentialHistory.RevertStateAsync(user, _userManager, RollbackFrom.Roles, newPassword);
+                    await _credentialHistory.RevertState(user, _userManager, RollbackFrom.Roles, newPassword);
                     return false;
                 }
                 else
-                    result = addRoleResult.Succeeded;
+                {
+                    result = true;
+                }
             }
 
             return result;

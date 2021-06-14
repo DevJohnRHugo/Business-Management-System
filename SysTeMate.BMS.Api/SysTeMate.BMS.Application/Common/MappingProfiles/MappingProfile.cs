@@ -12,23 +12,39 @@ namespace SysTeMate.BMS.Application.Common.MappingProfiles
     {
         public MappingProfile()
         {
-
             CreateMap<CreateUserCommand, ApplicationUserVm>()
-              /*.ForMember(dest => dest.ApplicationUserVms, act => act.MapFrom(a => new ApplicationUserVm { Password = a.Password }))*/;
-
-            CreateMap<CreateUserCommand, ApplicationUserVm>()
-                /*.ForMember(dest => dest.ApplicationUserVms.Password, act => act.Ignore())*/;
-                       
+              .ForMember(x => x.AppUserDto, opt => opt.MapFrom(model => new ApplicationUserDto
+              {
+                  Id = null,
+                  UserName = model.UserName,
+                  EmployeeId = model.EmployeeId
+              }));
 
             CreateMap<SignInUserCommand, ApplicationUserVm>()
-                /*.ForMember(dest => dest.ApplicationUserVms.Password, act => act.Ignore())*/;
+            /*.ForMember(dest => dest.ApplicationUserVms.Password, act => act.Ignore())*/
+            .ForMember(x => x.AppUserDto, opt => opt.MapFrom(model => new ApplicationUserDto
+             {
+                 UserName = model.UserName
+             }));
 
             CreateMap<SignOutUserCommand, ApplicationUserVm>();
 
             CreateMap<UpdateUserCommand, ApplicationUserVm>()
-                /*.ForMember(dest => dest.ApplicationUserVms.Password, act => act.Ignore())*/;
+            //.ForMember(dest => dest.AppUserDto.Password, act => act.Ignore());
+            .ForMember(x => x.AppUserDto, opt => opt.MapFrom(model => new ApplicationUserDto
+            {
+                Id = model.Id,
+                UserName = model.UserName,
+                EmployeeId = model.EmployeeId
+            }));
 
-            CreateMap<DeleteUserCommand, ApplicationUserVm>();
+            CreateMap<DeleteUserCommand, ApplicationUserVm>()
+            .ForMember(x => x.AppUserDto, opt => opt.MapFrom(model => new ApplicationUserDto
+            {
+                Id = model.Id,
+                UserName = model.UserName,
+                EmployeeId = model.EmployeeId
+            }));
 
             CreateMap<GetApplicationUserQuery, ApplicationUserVm>();
         }

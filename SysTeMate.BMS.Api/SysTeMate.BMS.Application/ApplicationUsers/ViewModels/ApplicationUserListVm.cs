@@ -7,6 +7,6 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.ViewModels
 {
     public class ApplicationUserListVm : BaseViewModelReponse
     {
-        public IList<ApplicationUserDto> ApplicationUserVms { get; set; }
+        public IList<ApplicationUserDto> ApplicationUsers { get; set; }
     }
 }

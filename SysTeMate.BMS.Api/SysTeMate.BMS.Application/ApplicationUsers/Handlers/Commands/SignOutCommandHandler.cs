@@ -14,12 +14,10 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers.Commands
     public class SignOutCommandHandler : IRequestHandler<SignOutUserCommand>
     {
         private readonly IIdentityService _identityService;
-        private readonly IMapper _mapper;
 
-        public SignOutCommandHandler(IIdentityService identityService, IMapper mapper)
+        public SignOutCommandHandler(IIdentityService identityService)
         {
             _identityService = identityService;
-            _mapper = mapper;
         }
 
         public async Task<Unit> Handle(SignOutUserCommand request, CancellationToken cancellationToken)
