@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SysTeMate.BMS.Application.ApplicationUsers.Commands;
+using SysTeMate.BMS.Application.ApplicationUsers.Interfaces.Identity;
 using SysTeMate.BMS.Application.ApplicationUsers.Interfaces.Memento;
 using SysTeMate.BMS.Application.ApplicationUsers.Queries;
 using SysTeMate.BMS.Application.ApplicationUsers.ViewModels;
@@ -19,15 +20,15 @@ namespace SysTeMate.BMS.Infrastructure.Identity
 {
     public class IdentityService : IIdentityService
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IUserManager<ApplicationUser, IdentityResult> _mockUserManager;
+        private readonly ISignInManager<SignInResult> _mockSignInManager;
         private readonly IUserCredentialHistory<UserCredentialState> _credentialHistory;
 
-        public IdentityService(UserManager<ApplicationUser> userManager, IUserCredentialHistory<UserCredentialState> credentialHistory, SignInManager<ApplicationUser> signInManager)
+        public IdentityService(IUserManager<ApplicationUser, IdentityResult> mockUserManager, IUserCredentialHistory<UserCredentialState> credentialHistory, ISignInManager<SignInResult> mockSignInManager)
         {
-            _userManager = userManager;
+            _mockUserManager = mockUserManager;
             _credentialHistory = credentialHistory;
-            _signInManager = signInManager;
+            _mockSignInManager = mockSignInManager;
         }
 
         public async Task<bool> CreateUser(CreateUserCommand request)
@@ -45,14 +46,59 @@ namespace SysTeMate.BMS.Infrastructure.Identity
 
         public async Task<bool> SignIn(SignInUserCommand request)
         {
-            var result = await _signInManager.PasswordSignInAsync(request.UserName, request.Password, false, false);
+            var result = await _mockSignInManager.PasswordSignInAsync(request.UserName, request.Password, false, false);
 
             return (result.Succeeded) ? true : false;
         }
 
+        public async Task<ApplicationUserListVm> GetApplicationUsers(GetApplicationUserQuery request = null)
+        {
+            try
+            {
+                var appUserList = new ApplicationUserListVm();
+
+                if (request.Id != null)
+                {
+                    var user = await GetApplicationUser(request.Id.Value);
+
+                    if (NullChecker.IsNull(user))
+                    {
+                        appUserList.ApplicationUsers = null;
+                    }
+                    else
+                    {
+                        appUserList.ApplicationUsers = new List<ApplicationUserDto>
+                        {
+                            new ApplicationUserDto
+                            {
+                              Id = new Guid(user.Id),
+                              UserName = user.UserName,
+                              EmployeeId = user.EmployeeId,
+                            }
+                        };
+                    }
+                }
+                else
+                {
+                    appUserList.ApplicationUsers = _mockUserManager.Users().ToList().Select(user => new ApplicationUserDto
+                    {
+                        Id = new Guid(user.Id),
+                        UserName = user.UserName,
+                        EmployeeId = user.EmployeeId,
+                    }).ToList();
+                }
+
+                return appUserList;
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
         public async Task SignOut()
         {
-            await _signInManager.SignOutAsync();
+            await _mockSignInManager.SignOutAsync();
         }
 
         public async Task<bool> UpdateUser(UpdateUserCommand request)
@@ -74,66 +120,28 @@ namespace SysTeMate.BMS.Infrastructure.Identity
         public async Task<bool> DeleteUser(Guid id)
         {
             var user = await GetApplicationUser(id);
-            return NullChecker.IsNull(user) ? false : _userManager.DeleteAsync(user).Result.Succeeded;
-        }
-
-        public async Task<ApplicationUserListVm> GetApplicationUsers(GetApplicationUserQuery request = null)
-        {
-            try
-            {
-                var appUserList = new ApplicationUserListVm();
-
-                if (request.Id != null)
-                {
-                    var user = await GetApplicationUser(request.Id.Value);
-                    appUserList.ApplicationUsers = new List<ApplicationUserDto>
-                    {
-                        new ApplicationUserDto
-                        {
-                          Id = new Guid(user.Id),
-                          UserName = user.UserName,
-                          EmployeeId = user.EmployeeId,
-                        }
-                    };
-                }
-                else
-                {
-                    appUserList.ApplicationUsers = _userManager.Users.ToList().Select(user => new ApplicationUserDto
-                    {
-                        Id = new Guid(user.Id),
-                        UserName = user.UserName,
-                        EmployeeId = user.EmployeeId,
-                    }).ToList();
-                }
-
-                return appUserList;
-            }
-            catch (Exception e)
-            {
-
-                throw;
-            }
+            return NullChecker.IsNull(user) ? false : _mockUserManager.DeleteAsync(user).Result.Succeeded;
         }
 
         private async Task<ApplicationUser> GetApplicationUser(Guid id)
         {
-            return await _userManager.FindByIdAsync(id.ToString()) ?? null;
+            return await _mockUserManager.FindByIdAsync(id.ToString()) ?? null;
         }
 
         private async Task<IEnumerable<string>> GetApplicationUserRoles(ApplicationUser user)
         {
-            return await _userManager.GetRolesAsync(user) ?? null;
+            return await _mockUserManager.GetRolesAsync(user) ?? null;
         }
 
         private async Task<bool> CreateUserProcess(CreateUserCommand request, ApplicationUser user)
         {
             var result = false;
-            var createUser = await _userManager.CreateAsync(user, request.Password);
-            var addRoles = await _userManager.AddToRolesAsync(user, request.Roles);
+            var createUser = await _mockUserManager.CreateAsync(user, request.Password);
+            var addRoles = await _mockUserManager.AddToRolesAsync(user, request.Roles);
 
-            if (!createUser.Succeeded && !addRoles.Succeeded)
+            if (!createUser.Succeeded || !addRoles.Succeeded)
             {
-                var userId = _userManager.FindByNameAsync(user.UserName).Result.Id;
+                var userId = _mockUserManager.FindByNameAsync(user.UserName).Result.Id;
                 await DeleteUser(new Guid(userId));
             }
             else
@@ -144,13 +152,13 @@ namespace SysTeMate.BMS.Infrastructure.Identity
             return result;
         }
 
-        private async Task<bool> UpdateUserCredentials(ApplicationUser user, string password, string newPassword)
+        private async Task<bool> UpdateUserCredentials(ApplicationUser user, string currentPassword, string newPassword)
         {
-            var updateUser = await _userManager.UpdateAsync(user);
-            var updatePassword = await _userManager.ChangePasswordAsync(user, password, newPassword);
+            var updateUser = await _mockUserManager.UpdateAsync(user);
+            var updatePassword = await _mockUserManager.ChangePasswordAsync(user, currentPassword, newPassword);
 
             if (!updatePassword.Succeeded)
-                await _credentialHistory.RevertState(user, _userManager, RollbackFrom.UserNameAndEmpId, newPassword);
+                await _credentialHistory.RevertState(user, _mockUserManager, RollbackFrom.UserNameAndEmpId, newPassword);
 
             return !updateUser.Succeeded || !updatePassword.Succeeded ? false : true;
         }
@@ -158,15 +166,15 @@ namespace SysTeMate.BMS.Infrastructure.Identity
         private async Task<bool> AddUserRoles(ApplicationUser user, string password, string newPassword, IEnumerable<string> roles)
         {
             var result = false;
-            await _userManager.RemoveFromRolesAsync(user, await _userManager.GetRolesAsync(user));
+            await _mockUserManager.RemoveFromRolesAsync(user, await _mockUserManager.GetRolesAsync(user));
 
             foreach (var role in roles)
             {
-                var addRoleResult = await _userManager.AddToRoleAsync(user, role);
+                var addRoleResult = await _mockUserManager.AddToRoleAsync(user, role);
 
                 if (!addRoleResult.Succeeded)
                 {
-                    await _credentialHistory.RevertState(user, _userManager, RollbackFrom.Roles, newPassword);
+                    await _credentialHistory.RevertState(user, _mockUserManager, RollbackFrom.Roles, newPassword);
                     return false;
                 }
                 else

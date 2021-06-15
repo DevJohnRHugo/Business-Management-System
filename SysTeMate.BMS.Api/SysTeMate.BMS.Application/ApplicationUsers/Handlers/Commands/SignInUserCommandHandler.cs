@@ -23,7 +23,7 @@ namespace SysTeMate.BMS.Application.ApplicationUsers.Handlers.Commands
         }
 
         public async Task<ApplicationUserVm> Handle(SignInUserCommand request, CancellationToken cancellationToken)
-        {
+        {           
             var applicationUserVm = _mapper.Map<ApplicationUserVm>(request);
             var result = await _identityService.SignIn(request);
 

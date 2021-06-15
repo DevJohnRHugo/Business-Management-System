@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using SysTeMate.BMS.Application.ApplicationUsers.Interfaces.Identity;
 using SysTeMate.BMS.Application.ApplicationUsers.Interfaces.Memento;
 using SysTeMate.BMS.Application.Common.Interfaces;
 using SysTeMate.BMS.Domain.DatabaseContext;
@@ -35,6 +36,8 @@ namespace SysTeMate.BMS.Domain
 
             services.AddScoped<IUserCredential<UserCredentialState>, UserCredential>();
             services.AddScoped<IUserCredentialHistory<UserCredentialState>, UserCredentialHistory>();
+            services.AddScoped<ISignInManager<SignInResult>, MockSignInManager>();
+            services.AddScoped<IUserManager<ApplicationUser, IdentityResult>, MockUserManager>();
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

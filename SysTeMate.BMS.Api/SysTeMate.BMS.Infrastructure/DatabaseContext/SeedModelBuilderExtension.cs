@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using SysTeMate.BMS.Domain.Entities;
 using SysTeMate.BMS.Domain.Enums;
+using SysTeMate.BMS.Infrastructure.Models;
 
 namespace SysTeMate.BMS.Infrastructure.DatabaseContext
 {
@@ -69,6 +70,13 @@ namespace SysTeMate.BMS.Infrastructure.DatabaseContext
                          NormalizedName = "CanManageUserAccounts".ToUpper(),
                     },
                 });
+
+            //builder
+            //    .Entity<ApplicationUser>().HasData(new ApplicationUser 
+            //    { 
+            //        UserName = "SuperAdmin",
+                    
+            //    });
         }
     }
 }
